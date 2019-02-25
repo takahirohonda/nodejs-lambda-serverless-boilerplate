@@ -8,14 +8,14 @@ This example lambda function make a get request to external api endpoint and ret
 
 ## What can I do with this boilerplate
 
-1. Create Node.js lambda function with unit & integration tests (using mocha).
-2. Unit testing code coverage report (using istanbul).
-3. Deployment with Serverless command.
+1. Create Node.js lambda function with unit & integration tests (using [mocha](https://mochajs.org/)).
+2. Unit testing code coverage report (using [istanbul](https://istanbul.js.org/)).
+3. Deployment with Serverless command into different environments.
 4. Serverless configuration includes: 
-  * Create API gateway with custom endpoint.
-  * Run Lambda function in a specific VPC and a group of subnets.
-  * Assign IAM Roles to the function.
-  * Create AWS resources that are associated with the function.
+    1. Create API gateway with custom endpoint.
+    2. Run Lambda function in a specific VPC and a group of subnets.
+    3. Assign IAM Roles to the function.
+    4. Create AWS resources that are associated with the function.
 
 
 ## (1) Serverless installation
@@ -35,7 +35,7 @@ npm i
 
 ## (3) Deployment
 
-Deployment can be done through the local machine by running Serverless command. For production, it is recommended to use a CD/CI tool like Jenkins. AWS CLI must be configured with the appropriate credental.
+Deployment can be done through the local machine by running Serverless command. For production, it is recommended to use a CD/CI tool such as Jenkins. AWS CLI must be configured with the appropriate credental ([Configureing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)).
 
 ```bash
 sls deploy --stage dev
@@ -45,7 +45,7 @@ sls deploy --stage dev
 
 Using Mocha for unit testing and Istanbul for code coverage.
 
-Run the command below to perform unit test
+Run the command below to perform unit test & create code coverage report.
 
 ```base
 npm test

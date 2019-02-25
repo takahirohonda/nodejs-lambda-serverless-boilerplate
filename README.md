@@ -9,7 +9,7 @@ This example lambda function make a get request to external api endpoint and ret
 ## What can I do with this boilerplate
 
 1. Create Node.js lambda function with unit & integration tests (using [mocha](https://mochajs.org/)).
-2. Unit testing code coverage report (using [istanbul](https://istanbul.js.org/)).
+2. Testing code coverage report (using [istanbul](https://istanbul.js.org/)).
 3. Deployment with Serverless command into different environments.
 4. Serverless configuration includes: 
     1. Create API gateway with custom endpoint.
@@ -43,12 +43,18 @@ sls deploy --stage dev
 
 ## (4) Unit testing and code coverage
 
-Using Mocha for unit testing and Istanbul for code coverage.
+Using Mocha for both unit and integration tests. Istanbul for test coverage.
 
-Run the command below to perform unit test & create code coverage report.
+Unit tests are for checking individual functions without external dependencies. Integration tests are running on the actual endpoint. 
 
-```base
+- Unit test
+```bash
 npm test
+```
+
+- Integration test
+```bash
+npm run-script integration
 ```
 
 ## (5) Calling endpoint
@@ -110,9 +116,9 @@ Create folders and files
     - permissions.yml (Defines what lambda function is permitted to do. Example includes access rights to parameter store)
     - resources.yml (Resources you want to create along with lambda function. Example includes alerts.)
     - vpc
-      - uat1.yml (Including Security group ids and subnet ids where you want to run the lamda function.)
-      - tst1.yml
-      - prd1.yml
+      - dev.yml (Including Security group ids and subnet ids where you want to run the lamda function.)
+      - tst.yml
+      - prod.yml
   - src
     - handler.js
     - dataProcessor.js

@@ -1,0 +1,56 @@
+
+service: nodejs-lambda-boilerplate
+
+plugins:
+  - serverless-plugin-git-variables # This plugin creates Tags based on the git repo information such as sha.
+  #- serverless-domain-manager # This plugin creates DNS records through Route 53.
+
+custom:  
+  deploymentBucket: ${self:custom.env}.insights.lambdafunction # S3 bucket name where packaged lambda function gets stored on deployment.
+  stage: ${opt:stage, self:provider.stage}
+  region: ${opt:region, self:provider.region}
+  resourcePrefix: ${self:service}-${self:custom.stage}
+  env: ${opt:env, self:custom.stage}
+  account: ${opt:account, self:provider.account}
+  # customDomain: ${file(config/domains.yml)} # this is for custom dns for API endpoint
+  # certs: ${file(config/certs.yml)} # if creating custom dns, need to specify certificate
+  functionName: ${self:custom.env}-nodejs-lambda-boilerplate # This is the function name appears in the AWS lambda console.
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: <region such as ap-southeast-2>
+  stage: dev
+  account: '<account id>'
+  memorySize: 1024
+  timeout: 30
+  iamRoleStatements: ${file(config/permissions.yml)}
+  deploymentBucket:
+    name: ${self:custom.deploymentBucket}
+    serverSideEncryption: AES256
+  environment: ${file(config/env.yml)}
+  # vpc: ${file(config/vpc/${self:custom.env}.yml)} # specifies which vpc to run, without it, defaults to default vpc.
+  # If using API gateway with key, specify the key name.
+  # apiKeys:
+  #   - ${self:custom.resourcePrefix}-api-key
+  #usagePlan:
+#    quota:
+#      limit: 100000
+#      period: DAY
+
+functions:
+  nodejsLambdaBoilerPlate:
+    handler: src/handler.example # name of the handler function in src/handler.js
+    name: ${self:custom.functionName}
+    events:
+      - http:
+          path: node-lambda-boilerplate
+          method: get
+      # - http:
+      #     path: example-api # the path comes after API endpoint
+      #     method: post
+      #     private: true
+
+# If you need to create AWS resources such as dynamodb or cloudwatch, specify in resource.yml
+# resources: 
+#   Resources: ${file(config/resources.yml)}

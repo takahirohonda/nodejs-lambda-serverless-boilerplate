@@ -1,8 +1,12 @@
+# DEPRECATED
+
+This repo is deprecated. All the lambda code is move to [aws-lambda-template-generator](https://github.com/aws-lambda-template-generator).
+
 # nodejs-lambda-serverless-boilerplate
 
 **Boilerplate to create AWS Lambda Function with Node.js and deploy it with Serverless**
 
-Boilerplate for Node.js lambda function, including Serveless configuration, JavaScript function, and unit test examples. 
+Boilerplate for Node.js lambda function, including Serverless configuration, JavaScript function, and unit test examples.
 
 This example lambda function make a get request to external api endpoint and return the result through the API gateway endpoint. The function runs in the default VPC.
 
@@ -11,14 +15,14 @@ This example lambda function make a get request to external api endpoint and ret
 1. Create Node.js lambda function with unit & integration tests (using [mocha](https://mochajs.org/)).
 2. Testing code coverage report (using [istanbul](https://istanbul.js.org/)).
 3. Deployment with Serverless command into different environments.
-4. Serverless configuration includes: 
-    1. Create API gateway with custom endpoint.
-    2. Run Lambda function in a specific VPC and a group of subnets.
-    3. Assign IAM Roles to the function.
-    4. Create AWS resources that are associated with the function.
-
+4. Serverless configuration includes:
+   1. Create API gateway with custom endpoint.
+   2. Run Lambda function in a specific VPC and a group of subnets.
+   3. Assign IAM Roles to the function.
+   4. Create AWS resources that are associated with the function.
 
 ## (1) Serverless installation
+
 Using [serverless](https://serverless.com/) framework to package & deploy lambda function. Install serverless globally as below.
 
 ```bash
@@ -35,7 +39,7 @@ npm i
 
 ## (3) Deployment
 
-Deployment can be done through the local machine by running Serverless command. For production, it is recommended to use a CD/CI tool such as Jenkins. AWS CLI must be configured with the appropriate credental ([Configureing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)).
+Deployment can be done through the local machine by running Serverless command. For production, it is recommended to use a CD/CI tool such as Jenkins. AWS CLI must be configured with the appropriate credential ([Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)).
 
 ```bash
 sls deploy --stage dev
@@ -45,14 +49,16 @@ sls deploy --stage dev
 
 Using Mocha for both unit and integration tests. Istanbul for test coverage.
 
-Unit tests are for checking individual functions without external dependencies. Integration tests are running on the actual endpoint. 
+Unit tests are for checking individual functions without external dependencies. Integration tests are running on the actual endpoint.
 
 - Unit test
+
 ```bash
 npm test
 ```
 
 - Integration test
+
 ```bash
 npm run-script integration
 ```
@@ -112,11 +118,11 @@ Create folders and files
   - config
     - certs.yml (Certificate names per environment)
     - domains.yml (Domain names and base path for API endpoint. The record will be created by Route53)
-    - env.yml (Environment variables set in the lambda execution environememt. Example includes environment and parameter names for db connections)
+    - env.yml (Environment variables set in the lambda execution environment. Example includes environment and parameter names for db connections)
     - permissions.yml (Defines what lambda function is permitted to do. Example includes access rights to parameter store)
     - resources.yml (Resources you want to create along with lambda function. Example includes alerts.)
     - vpc
-      - dev.yml (Including Security group ids and subnet ids where you want to run the lamda function.)
+      - dev.yml (Including Security group ids and subnet ids where you want to run the lambda function.)
       - tst.yml
       - prod.yml
   - src

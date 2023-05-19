@@ -1,6 +1,6 @@
 # DEPRECATED
 
-This repo is deprecated. All the lambda code is move to [aws-lambda-template-generator](https://github.com/aws-lambda-template-generator).
+This repo is deprecated. All the lambda templates are moved to [aws-lambda-template-generator](https://github.com/aws-lambda-template-generator).
 
 # nodejs-lambda-serverless-boilerplate
 
